@@ -1,0 +1,232 @@
+{
+  "categories": [
+    {
+      "id": "cat-1",
+      "name": "Appetizers",
+      "color": "#f97316"
+    },
+    {
+      "id": "cat-2",
+      "name": "Main Courses",
+      "color": "#6366f1"
+    },
+    {
+      "id": "cat-3",
+      "name": "Desserts",
+      "color": "#ec4899"
+    },
+    {
+      "id": "cat-4",
+      "name": "Beverages",
+      "color": "#10b981"
+    }
+  ],
+  "items": [
+    {
+      "id": "item-1",
+      "name": "Garlic Bread",
+      "description": "Toasted bread with garlic butter",
+      "price": 6.99,
+      "category_id": "cat-1"
+    },
+    {
+      "id": "item-2",
+      "name": "Caesar Salad",
+      "description": "Romaine, croutons, parmesan, caesar dressing",
+      "price": 9.99,
+      "category_id": "cat-1"
+    },
+    {
+      "id": "item-3",
+      "name": "Soup of the Day",
+      "description": "Ask your server for today's selection",
+      "price": 7.99,
+      "category_id": "cat-1"
+    },
+    {
+      "id": "item-4",
+      "name": "Grilled Salmon",
+      "description": "Fresh Atlantic salmon with lemon herb sauce",
+      "price": 24.99,
+      "category_id": "cat-2"
+    },
+    {
+      "id": "item-5",
+      "name": "Ribeye Steak",
+      "description": "12oz ribeye with mashed potatoes & seasonal veggies",
+      "price": 34.99,
+      "category_id": "cat-2"
+    },
+    {
+      "id": "item-6",
+      "name": "Chicken Parmesan",
+      "description": "Breaded chicken with marinara and mozzarella",
+      "price": 19.99,
+      "category_id": "cat-2"
+    },
+    {
+      "id": "item-7",
+      "name": "Penne Ala Vodka",
+      "description": "Penne pasta in creamy tomato vodka sauce",
+      "price": 17.99,
+      "category_id": "cat-2"
+    },
+    {
+      "id": "item-8",
+      "name": "Chocolate Lava Cake",
+      "description": "Warm chocolate cake with molten center",
+      "price": 9.99,
+      "category_id": "cat-3"
+    },
+    {
+      "id": "item-9",
+      "name": "Tiramisu",
+      "description": "Classic Italian coffee-flavoured dessert",
+      "price": 8.99,
+      "category_id": "cat-3"
+    },
+    {
+      "id": "item-10",
+      "name": "Cheesecake",
+      "description": "New York style cheesecake with berry compote",
+      "price": 8.99,
+      "category_id": "cat-3"
+    },
+    {
+      "id": "item-11",
+      "name": "Cola",
+      "description": "Classic cola",
+      "price": 2.99,
+      "category_id": "cat-4"
+    },
+    {
+      "id": "item-12",
+      "name": "Sparkling Water",
+      "description": "Fresh sparkling water",
+      "price": 2.49,
+      "category_id": "cat-4"
+    },
+    {
+      "id": "item-13",
+      "name": "Fresh Juice",
+      "description": "Orange / Apple / Cranberry",
+      "price": 4.99,
+      "category_id": "cat-4"
+    },
+    {
+      "id": "item-14",
+      "name": "Coffee",
+      "description": "Freshly brewed coffee",
+      "price": 3.49,
+      "category_id": "cat-4"
+    }
+  ],
+  "tables": [
+    {
+      "id": "tbl-1",
+      "number": 1,
+      "capacity": 4,
+      "status": "available"
+    },
+    {
+      "id": "tbl-2",
+      "number": 2,
+      "capacity": 2,
+      "status": "available"
+    },
+    {
+      "id": "tbl-3",
+      "number": 3,
+      "capacity": 4,
+      "status": "available"
+    },
+    {
+      "id": "tbl-4",
+      "number": 4,
+      "capacity": 2,
+      "status": "available"
+    },
+    {
+      "id": "tbl-5",
+      "number": 5,
+      "capacity": 4,
+      "status": "available"
+    },
+    {
+      "id": "tbl-6",
+      "number": 6,
+      "capacity": 2,
+      "status": "available"
+    },
+    {
+      "id": "tbl-7",
+      "number": 7,
+      "capacity": 4,
+      "status": "available"
+    },
+    {
+      "id": "tbl-8",
+      "number": 8,
+      "capacity": 2,
+      "status": "available"
+    },
+    {
+      "id": "tbl-9",
+      "number": 9,
+      "capacity": 4,
+      "status": "available"
+    },
+    {
+      "id": "tbl-10",
+      "number": 10,
+      "capacity": 2,
+      "status": "available"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord-1779120770034",
+      "table_id": "tbl-3",
+      "order_type": "dine_in",
+      "subtotal": 73.45,
+      "tax": 7.345000000000001,
+      "total": 80.795,
+      "payment_method": "card",
+      "amount_paid": 84.92,
+      "change": 4.125,
+      "notes": "",
+      "status": "paid",
+      "created_at": "2026-05-18T16:12:50.034Z",
+      "updated_at": "2026-05-18T16:12:50.202Z"
+    }
+  ],
+  "orderItems": [
+    {
+      "id": "oi-1779120770034-v99q",
+      "order_id": "ord-1779120770034",
+      "menu_item_id": "item-4",
+      "quantity": 2,
+      "price": 24.99,
+      "notes": "",
+      "sent_to_kitchen": false
+    },
+    {
+      "id": "oi-1779120770034-ghwy",
+      "order_id": "ord-1779120770034",
+      "menu_item_id": "item-14",
+      "quantity": 1,
+      "price": 3.49,
+      "notes": "",
+      "sent_to_kitchen": false
+    },
+    {
+      "id": "oi-1779120770148-a1yu",
+      "order_id": "ord-1779120770034",
+      "menu_item_id": "item-8",
+      "quantity": 2,
+      "price": 9.99,
+      "notes": "",
+      "sent_to_kitchen": false
+    }
+  ]
+}
