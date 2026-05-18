@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { formatCurrency } from '../lib/utils'
+import { formatCurrency } from '../../lib/utils'
 
 export default function OrderDrawer({ table, onClose }) {
   const [items, setItems] = useState([])
