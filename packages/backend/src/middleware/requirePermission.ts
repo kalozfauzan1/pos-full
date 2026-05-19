@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { prisma } from '../utils/prisma.js';
 import { requireAuth } from './requireAuth.js';
-import { TokenPayload } from '../types/auth.js';
 
 type RequiredPermission = string | { entity: string; action: string };
 
@@ -19,18 +18,19 @@ function normalizePermission(perm: RequiredPermission): string {
  *   import { requirePermission } from './middleware/requirePermission.js'
  *   router.post('/orders', requireAuth, requirePermission('orders:create'), handler)
  */
-export async function requirePermission(
+export function requirePermission(
   ...required: RequiredPermission[]
-): Promise<(req: Request, res: Response, next: NextFunction) => void> {
+): (req: Request, res: Response, next: NextFunction) => void {
   const requiredNormalized = required.map(normalizePermission);
 
-  // run requireAuth synchronously inside an async wrapper so the
-  // Express request pipeline interleaves correctly
-  return (req: Request, res: Response, next: NextFunction): void => {
-    (async () => {
-      requireAuth(req, res, () => {});
-      if (res.headersSent) return;
+  return (req, res, next) => {
+    const wrappedNext: NextFunction = (err?: unknown) => {
+      if (err) next(err); else next();
+    };
+    requireAuth(req, res, wrappedNext);
+    if (res.headersSent) return;
 
+    (async () => {
       if (!req.user) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -50,12 +50,12 @@ export async function requirePermission(
         const permissions = JSON.parse(role.permissions) as string[];
 
         if (permissions.includes('*')) {
-          next();
+          wrappedNext();
           return;
         }
 
         const hasAccess = requiredNormalized.some(
-          (p: string) => permissions.includes(p),
+          (p) => permissions.includes(p),
         );
 
         if (!hasAccess) {
@@ -67,10 +67,10 @@ export async function requirePermission(
           return;
         }
 
-        next();
+        wrappedNext();
       } catch {
         res.status(500).json({ error: 'Failed to check permissions' });
       }
-    })();
+    })().catch(() => {});
   };
 }
