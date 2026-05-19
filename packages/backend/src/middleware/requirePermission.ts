@@ -19,13 +19,11 @@ function normalizePermission(perm: RequiredPermission): string {
  *   import { requirePermission } from './middleware/requirePermission.js'
  *   router.post('/orders', requireAuth, requirePermission('orders:create'), handler)
  */
-export async function requirePermission(
+export function requirePermission(
   ...required: RequiredPermission[]
-): Promise<(req: Request, res: Response, next: NextFunction) => void> {
+): (req: Request, res: Response, next: NextFunction) => void {
   const requiredNormalized = required.map(normalizePermission);
 
-  // run requireAuth synchronously inside an async wrapper so the
-  // Express request pipeline interleaves correctly
   return (req: Request, res: Response, next: NextFunction): void => {
     (async () => {
       requireAuth(req, res, () => {});
