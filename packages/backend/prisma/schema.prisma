@@ -87,6 +87,7 @@ model Order {
   updatedAt   DateTime    @updatedAt
   table       Table?      @relation(fields: [tableId], references: [id])
   items       OrderItem[]
+  payments    Payment[]
 }
 
 model OrderItem {
@@ -101,4 +102,37 @@ model OrderItem {
   updatedAt  DateTime @updatedAt
   order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  orderId       String
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Restrict)
+  amount        Float
+  method        String   @default("card")
+  status        String   @default("completed")
+  reference     String?
+  recordedBy    String
+  note          String?
+  splitPayments String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  receipt       Receipt?
+
+  @@index([orderId])
+  @@index([createdAt])
+}
+
+model Receipt {
+  id             String   @id @default(uuid())
+  paymentId      String   @unique
+  payment        Payment  @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  orderId        String
+  orderStatus    String
+  receiptNumber  String   @unique
+  receiptData    String
+  generatedAt    DateTime @default(now())
+
+  @@index([receiptNumber])
+  @@index([orderId])
 }
